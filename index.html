@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>MERKA Translator</title>
+<style>
+:root{color-scheme:dark;--bg:#07111f;--panel:#0d1b2d;--panel2:#10243a;--line:#1d3852;--cyan:#71dcff;--violet:#a995ff;--text:#edf7ff;--muted:#91a9bf}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#15304a 0,transparent 42%),radial-gradient(ellipse at 100% 30%,#201b48 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{width:min(980px,100%);margin:auto;padding:28px 18px 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border:1px solid #3b7898;border-radius:15px;display:grid;place-items:center;color:var(--cyan);font-size:25px;background:linear-gradient(145deg,#16364d,#111a35);box-shadow:0 0 30px #42caff20}.brand h1{margin:0;letter-spacing:.16em;font-size:25px}.brand p{margin:4px 0 0;color:var(--muted);font-size:11px;letter-spacing:.19em}.version{border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--cyan);font-size:11px;letter-spacing:.08em}
+.intro{margin:0 0 20px}.intro h2{font-size:clamp(24px,5vw,36px);margin:0 0 8px;letter-spacing:-.03em}.intro p{margin:0;color:var(--muted);line-height:1.6;max-width:700px}
+.card{background:linear-gradient(150deg,#10243aee,#0a1728f2);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 18px 60px #0003}.controls{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin-bottom:15px}.field label,.section-label{display:block;color:var(--muted);font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 8px}.field select{width:100%;background:#091727;color:var(--text);border:1px solid #294761;border-radius:12px;padding:13px;font-size:15px;outline:none}.swap{height:44px;width:44px;border-radius:13px;border:1px solid #31536c;background:#10283e;color:var(--cyan);font-size:20px;cursor:pointer}
+textarea{width:100%;min-height:150px;resize:vertical;background:#081625;border:1px solid #29445e;border-radius:15px;color:var(--text);padding:15px;font:16px/1.65 inherit;outline:none}textarea:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #71dcff18}.output{min-height:150px;white-space:pre-wrap;overflow-wrap:anywhere;background:#081625;border:1px solid #29445e;border-radius:15px;padding:15px;font-size:19px;line-height:1.75;color:#aeeaff;letter-spacing:.04em}.output:empty:before{content:"Здесь появится результат…";color:#607a91}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.btn{border:1px solid #31536c;background:#112a40;color:var(--text);border-radius:12px;padding:11px 15px;font-weight:650;cursor:pointer}.btn.primary{background:linear-gradient(100deg,#167ba1,#6255a9);border:0;color:white}.btn:hover,.swap:hover{filter:brightness(1.16)}.hint{font-size:12px;color:var(--muted);line-height:1.55;margin:13px 2px 0}.status{min-height:18px;color:var(--cyan);font-size:12px;margin-top:9px}
+.gridhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:25px 2px 12px}.gridhead h3{margin:0;font-size:17px}.gridhead span{font-size:11px;color:var(--muted)}.alphabet{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.cell{background:#0c1b2c;border:1px solid #1c354c;border-radius:12px;padding:10px 5px;text-align:center;min-width:0}.cell .glyph{display:block;color:var(--cyan);font-size:25px;line-height:1.3}.cell .letter{display:block;color:#d9e8f5;font-size:12px;margin-top:4px}.cell.extra{border-color:#514a83;background:#151a35}.cell.extra .glyph{color:#c0aaff}.note{margin-top:18px;border:1px solid #514a83;background:#171a32;border-radius:14px;padding:13px 15px;color:#c9c5e8;font-size:12px;line-height:1.6}.foot{text-align:center;color:#647f98;font-size:11px;margin-top:25px}
+@media(max-width:600px){.wrap{padding:20px 13px 35px}.card{padding:14px;border-radius:18px}.controls{grid-template-columns:1fr 40px 1fr;gap:7px}.field select{padding:12px 7px;font-size:13px}.swap{width:40px}.alphabet{grid-template-columns:repeat(5,1fr)}.top{margin-bottom:20px}.version{font-size:9px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">⌬</div><div><h1>MERKA</h1><p>FUTURE SCRIPT SYSTEM</p></div></div>
+    <div class="version">TRANSLATOR · 1.0</div>
+  </header>
+  <section class="intro">
+    <h2>Письменность нового мира.</h2>
+    <p>Преобразуй русский или қазақша текст в символы MERKA и расшифровывай записи обратно. Перевод выполняется прямо на устройстве — интернет не нужен.</p>
+  </section>
+
+  <section class="card">
+    <div class="controls">
+      <div class="field"><label for="source">Из</label><select id="source"><option value="ru">Русский</option><option value="kk">Қазақша</option><option value="merka">MERKA</option></select></div>
+      <button class="swap" id="swap" title="Поменять направление" aria-label="Поменять направление">⇄</button>
+      <div class="field"><label for="target">В</label><select id="target"><option value="merka">MERKA</option><option value="ru">Русский</option><option value="kk">Қазақша</option></select></div>
+    </div>
+    <label class="section-label" for="input">Исходный текст</label>
+    <textarea id="input" placeholder="Напиши здесь… / Мәтінді осында жаз…"></textarea>
+    <div class="actions">
+      <button class="btn primary" id="translate">Перевести</button>
+      <button class="btn" id="clear">Очистить</button>
+    </div>
+    <div class="section-label" style="margin-top:20px">Результат</div>
+    <div class="output" id="output" aria-live="polite"></div>
+    <div class="actions">
+      <button class="btn" id="copy">Копировать результат</button>
+      <button class="btn" id="useResult">Перенести в исходный текст</button>
+    </div>
+    <div class="status" id="status" role="status"></div>
+    <p class="hint">Сохраняются пробелы, цифры и знаки препинания. Символ ⟐ перед буквой обозначает заглавную букву.</p>
+  </section>
+
+  <div class="gridhead"><h3>Алфавит MERKA</h3><span>42 уникальных знака</span></div>
+  <section class="card">
+    <div class="alphabet" id="alphabet"></div>
+    <div class="note"><b>Важно:</b> MERKA сейчас — система записи, а не отдельный разговорный язык. Она заменяет буквы символами, но не переводит смысл между русским и казахским. Казахские Ә, Ғ, Қ, Ң, Ө, Ұ, Ү, Һ и І имеют собственные знаки.</div>
+  </section>
+  <footer class="foot">MERKA · создано для чтения, записи и изучения</footer>
+</main>
+<script>
+const pairs = [
+['А','◇'],['Б','◁'],['В','▷'],['Г','⌜'],['Д','⌝'],['Е','⊓'],['Ё','⊔'],
+['Ж','✣'],['З','ϟ'],['И','⟋'],['Й','⟍'],['К','⟊'],['Л','⌁'],['М','⋀'],
+['Н','⋁'],['О','◎'],['П','□'],['Р','◧'],['С','◖'],['Т','⊤'],['У','⊥'],
+['Ф','⊙'],['Х','✕'],['Ц','⌞'],['Ч','⌟'],['Ш','≋'],['Щ','≍'],['Ъ','⊣'],
+['Ы','⊢'],['Ь','⌑'],['Э','◉'],['Ю','◌'],['Я','◈'],
+['Ә','⌬'],['Ғ','⌭'],['Қ','⌮'],['Ң','⌯'],['Ө','⌰'],['Ұ','⌱'],['Ү','⌲'],['Һ','⌳'],['І','⌴']
+];
+const encodeMap = new Map(pairs.map(([letter,glyph])=>[letter,glyph]));
+const decodeMap = new Map(pairs.map(([letter,glyph])=>[glyph,letter]));
+const CAPS = '⟐';
+const $ = id => document.getElementById(id);
+function encode(text){
+  let result='';
+  for(const char of text){
+    const upper=char.toLocaleUpperCase('ru-RU');
+    if(encodeMap.has(upper)){
+      result+=(char!==upper?CAPS:'')+encodeMap.get(upper);
+    }else result+=char;
+  }
+  return result;
+}
+function decode(text){
+  let result='', capNext=false;
+  for(const char of text){
+    if(char===CAPS){capNext=true;continue;}
+    if(decodeMap.has(char)){
+      let letter=decodeMap.get(char);
+      if(capNext) letter=letter.toLocaleUpperCase('ru-RU');
+      result+=letter;capNext=false;
+    }else{result+=char;capNext=false;}
+  }
+  return result;
+}
+function translate(){
+  const from=$('source').value,to=$('target').value,txt=$('input').value;
+  if(from===to){$('output').textContent=txt;$('status').textContent='Исходный и целевой форматы совпадают.';return;}
+  if(from==='merka'&&to!=='merka') $('output').textContent=decode(txt);
+  else if(from!=='merka'&&to==='merka') $('output').textContent=encode(txt);
+  else {
+    $('output').textContent='';
+    $('status').textContent='MERKA преобразует письменность, но не переводит смысл между русским и казахским. Выбери MERKA в одном из двух списков.';
+    return;
+  }
+  $('status').textContent='Готово. Символы преобразованы.';
+}
+function renderAlphabet(){
+  $('alphabet').innerHTML=pairs.map(([letter,glyph],i)=>`<div class="cell ${i>=33?'extra':''}"><span class="glyph">${glyph}</span><span class="letter">${letter}</span></div>`).join('');
+}
+$('translate').addEventListener('click',translate);
+$('clear').addEventListener('click',()=>{$('input').value='';$('output').textContent='';$('status').textContent='';$('input').focus();});
+$('copy').addEventListener('click',async()=>{
+ const value=$('output').textContent;if(!value){$('status').textContent='Сначала создай перевод.';return;}
+ try{await navigator.clipboard.writeText(value);$('status').textContent='Результат скопирован.';}
+ catch(e){const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();$('status').textContent='Результат скопирован.';}
+});
+$('useResult').addEventListener('click',()=>{$('input').value=$('output').textContent;$('output').textContent='';$('status').textContent='Результат перенесён.';});
+$('swap').addEventListener('click',()=>{const a=$('source'),b=$('target');const old=a.value;a.value=b.value;b.value=old;const out=$('output').textContent;if(out){$('input').value=out;$('output').textContent='';$('status').textContent='Направление изменено. Нажми «Перевести».';}});
+$('input').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')translate();});
+renderAlphabet();
+</script>
+</body>
+</html>
